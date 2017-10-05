@@ -14,9 +14,6 @@ var winCounter = 0;
 //how many time the user has lost the game
 var lossCounter = 0;
 
-//number of spaces in the word "_"
-var spaces = []
-
 
 
 //function to pick random word from array
@@ -28,6 +25,23 @@ var randomWord = chooseWord(wordToGuess);
 
 console.log(randomWord);
 
+//change word into an array of letters
+
+var randomWordArr = randomWord.split("");
+
+console.log(randomWordArr);
+
+//Have array with empty underscores
+var data = [];
+var length = randomWordArr.length;
+
+for (var i = 0; i < length; i++) {
+	data.push("_ ");
+	//document.getElementById("theword").innerHTML = data.join("");
+}
+
+console.log(data);
+
 //function that tells you if the letter exists in the word or not 
 	//loop through each letter place
 	//if it exists record the letter 
@@ -35,35 +49,33 @@ console.log(randomWord);
 document.onkeyup = function letterExists (guess){
 
 	var letterChoice = guess.key
-	var randomWordArr = randomWord.split
+	
+	console.log(letterChoice);
 
-	for (var i = 0; i < randomWord.length; i=i+1) {
+	for (var i = 0; i < randomWordArr.length; i=i+1) {
 		if (letterChoice === randomWord[i]) {
 
-			var letterPosition = indexOf(i) //IS THIS HOW I WOULD GET THE INDEX OF WHERE LETTER IS LOCATED??
-			document.getElementById("center").innerHTML = letterChoice //SHOW LETTER THAT WAS GUESSED CORRECTLY??
+			data.splice(i,0,letterChoice);
 
 		} else {
 
-			missedGuesses.push(guess)
+			missedGuesses.push(letterChoice); //if space is not that letter pushes it to missedGuesses a million times
 
 		}
+
+		console.log(data);
+		console.log(missedGuesses);
 	}
 
 }
 
-//splice method
 
-//show letter guessed wrong
-	
-
+//show letter guessed wrong	
 	var letterGuessed = document.getElementById("userguess")
 
-	letterGuessed.innerHTML = "Letters already guessed" + missedGuesses;
+	//letterGuessed.innerHTML = "Letters already guessed" + missedGuesses;
 
 	console.log(letterGuessed)
-
-
 
 
 //function to reset the game
@@ -71,6 +83,7 @@ function reset() {
 	guessesTaken = 0;
 	missedGuesses = [];
 }
+
 
 //if they take too many guesses
 	if (missedGuesses.length === maxGuesses.length) {
