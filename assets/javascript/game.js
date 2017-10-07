@@ -2,9 +2,9 @@
 const maxGuesses = 6;
 
 //variable for the word the person is guessing
-var wordToGuess = ["Biggie", "Big Sean", "Drake", "Tupac", "Dr Dre", "Public Enemy", "The Roots", "Big Sean", "Jcole", "Jayz", 
-"Brooklyn", "California Love", "Juicy", "Hypnotize", "The Blueprint", "Kendrick", "Kanye", "Nas", "Illmatic", "Stankonia", 
-"Outkast", "Tha Carter"];
+var wordToGuess = ["biggie", "big sean", "drake", "tupac", "dr dre", "public enemy", "the roots", "jcole", "jayz", 
+"brooklyn", "california love", "juicy", "hypnotize", "the blueprint", "kendrick", "kanye", "nas", "illmatic", "stankonia", 
+"outkast", "tha carter"];
 //variable for array of the guesses that are missed 
 var missedGuesses = [];
 //number of guesses taken that was missed
@@ -37,10 +37,8 @@ var length = randomWordArr.length;
 
 for (var i = 0; i < length; i++) {
 	data.push("_ ");
-	//document.getElementById("theword").innerHTML = data.join("");
 }
-
-console.log(data);
+document.getElementById("theword").innerHTML = data.join(""); 
 
 //function that tells you if the letter exists in the word or not 
 	//loop through each letter place
@@ -53,29 +51,38 @@ document.onkeyup = function letterExists (guess){
 	console.log(letterChoice);
 
 	for (var i = 0; i < randomWordArr.length; i=i+1) {
-		if (letterChoice === randomWord[i]) {
 
-			data.splice(i,0,letterChoice);
+		if (letterChoice === randomWordArr[i]) {
+
+			data.splice(i,1,letterChoice);
+			document.getElementById("theword").innerHTML = data.join(""); 
+
+		} else if (data.findIndex("_ ") === -1) {
+
+			alert("You Win!");
 
 		} else {
 
-			missedGuesses.push(letterChoice); //if space is not that letter pushes it to missedGuesses a million times
+			missedGuesses.push(letterChoice);
+
+			function removeDuplicates(arr) {
+				let s = new Set(arr);
+				let it = s.values();
+				return Array.from(it);
+			}
+
+			var incorrectLetters = removeDuplicates(missedGuesses);
+			document.getElementById("userguess").innerHTML = ("Letters guessed: " + incorrectLetters);
+
+			console.log(incorrectLetters);
 
 		}
 
-		console.log(data);
-		console.log(missedGuesses);
 	}
 
 }
 
-
-//show letter guessed wrong	
-	var letterGuessed = document.getElementById("userguess")
-
-	//letterGuessed.innerHTML = "Letters already guessed" + missedGuesses;
-
-	console.log(letterGuessed)
+console.log(data);
 
 
 //function to reset the game

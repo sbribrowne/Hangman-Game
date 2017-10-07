@@ -1,18 +1,20 @@
-body {
-	background-color: #d8aa3a;
-}
-
-html { 
-  background: url(../images/hangmanheader1.jpg) no-repeat bottom bottom fixed; 
-  background-size: 110vw;
+body { 
+	background-color: white;
+    background-image: url('../images/anotherbg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom right; 
 }
 
 #top {
 	font-family: 'Sedgwick Ave Display', cursive;
 	font-size: 120px;
+	color: #972037;
 }
 
 .container {
 	font-family: 'Sedgwick Ave Display', cursive;
 	font-size: 100px;
+	text-align: center;
+	color: #CA8B36;
 }
