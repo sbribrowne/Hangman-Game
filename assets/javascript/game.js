@@ -57,10 +57,6 @@ document.onkeyup = function letterExists (guess){
 			data.splice(i,1,letterChoice);
 			document.getElementById("theword").innerHTML = data.join(""); 
 
-		} else if (data.findIndex("_ ") === -1) {
-
-			alert("You Win!");
-
 		} else {
 
 			missedGuesses.push(letterChoice);
